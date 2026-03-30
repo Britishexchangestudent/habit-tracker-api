@@ -1,7 +1,7 @@
 
 ---
 
-# 📦 BACKEND README (copy this)
+# 📦 BACKEND README
 
 ```md
 # Habit Tracker API
