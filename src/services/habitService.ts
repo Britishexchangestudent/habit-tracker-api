@@ -12,7 +12,7 @@ export function getHabits(): Habit[] {
 
 export function createHabit(name: string): Habit {
   const newHabit: Habit = {
-    id: habits.length + 1,
+    id: habits.length > 0 ? Math.max(...habits.map((habit) => habit.id)) + 1 : 1,
     name,
     created_at: new Date().toISOString(),
   };
@@ -20,6 +20,17 @@ export function createHabit(name: string): Habit {
   habits.push(newHabit);
 
   return newHabit;
+}
+
+export function updateHabit(id: number, name: string): Habit | null {
+  const habit = habits.find((habit) => habit.id === id);
+
+  if (!habit) {
+    return null;
+  }
+
+  habit.name = name;
+  return habit;
 }
 
 export function deleteHabit(id: number): boolean {

@@ -1,5 +1,6 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import { createHabit } from "../services/habitService";
+import { jsonResponse } from "../utils/response";
 
 export const handler = async (
   event: APIGatewayProxyEvent
@@ -8,22 +9,10 @@ export const handler = async (
   const name = body?.name;
 
   if (!name || typeof name !== "string") {
-    return {
-      statusCode: 400,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ message: "Habit name is required" }),
-    };
+    return jsonResponse(400, { message: "Habit name is required" });
   }
 
   const newHabit = createHabit(name);
 
-  return {
-    statusCode: 201,
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(newHabit),
-  };
+  return jsonResponse(201, newHabit);
 };

@@ -1,5 +1,6 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import { deleteHabit } from "../services/habitService";
+import { jsonResponse } from "../utils/response";
 
 export const handler = async (
   event: APIGatewayProxyEvent
@@ -7,32 +8,14 @@ export const handler = async (
   const id = Number(event.pathParameters?.id);
 
   if (!id) {
-    return {
-      statusCode: 400,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ message: "Valid habit id is required" }),
-    };
+    return jsonResponse(400, { message: "Valid habit id is required" });
   }
 
   const deleted = deleteHabit(id);
 
   if (!deleted) {
-    return {
-      statusCode: 404,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ message: "Habit not found" }),
-    };
+    return jsonResponse(404, { message: "Habit not found" });
   }
 
-  return {
-    statusCode: 200,
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ message: "Habit deleted successfully" }),
-  };
+  return jsonResponse(200, { message: "Habit deleted successfully" });
 };
