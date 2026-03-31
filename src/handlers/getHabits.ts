@@ -1,9 +1,16 @@
-export const handler = async () => {
-    return {
-      statusCode: 200,
-      body: JSON.stringify([
-        { id: 1, name: "Gym" },
-        { id: 2, name: "Stretching" }
-      ])
-    };
+import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
+import { getHabits } from "../services/habitService";
+
+export const handler = async (
+  _event: APIGatewayProxyEvent
+): Promise<APIGatewayProxyResult> => {
+  const habits = getHabits()
+
+  return {
+    statusCode: 200,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(habits),
   };
+};
