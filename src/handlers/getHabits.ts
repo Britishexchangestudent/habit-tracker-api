@@ -4,7 +4,7 @@ import { getHabits } from "../services/habitService";
 export const handler = async (
   _event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> => {
-  const habits = getHabits()
+  const habits = getHabits();
 
   return {
     statusCode: 200,
