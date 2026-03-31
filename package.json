@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "dev": "ts-node src/local.ts"
+    "dev": "ts-node src/server.ts"
   },
   "keywords": [],
   "author": "",
@@ -14,10 +14,12 @@
   "type": "commonjs",
   "dependencies": {
     "@types/node": "^25.5.0",
+    "express": "^5.2.1",
     "typescript": "^6.0.2"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.161",
+    "@types/express": "^5.0.6",
     "ts-node": "^10.9.2"
   }
 }
