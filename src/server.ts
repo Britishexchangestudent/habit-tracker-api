@@ -5,11 +5,14 @@ import {
   updateHabit,
   deleteHabit,
 } from "./services/habitService";
+import cors from "cors";
 
 const app = express();
 const port = 3001;
 
+app.use(cors());
 app.use(express.json());
+
 
 app.get("/habits", (_req: Request, res: Response) => {
   res.json(getHabits());
