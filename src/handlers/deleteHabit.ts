@@ -11,7 +11,7 @@ export const handler = async (
     return jsonResponse(400, { message: "Valid habit id is required" });
   }
 
-  const deleted = deleteHabit(id);
+  const deleted = await deleteHabit(id);
 
   if (!deleted) {
     return jsonResponse(404, { message: "Habit not found" });

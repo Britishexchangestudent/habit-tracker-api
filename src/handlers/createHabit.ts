@@ -12,7 +12,6 @@ export const handler = async (
     return jsonResponse(400, { message: "Habit name is required" });
   }
 
-  const newHabit = createHabit(name);
-
+  const newHabit = await createHabit(name);
   return jsonResponse(201, newHabit);
 };

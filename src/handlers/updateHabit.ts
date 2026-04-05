@@ -17,7 +17,7 @@ export const handler = async (
     return jsonResponse(400, { message: "Habit name is required" });
   }
 
-  const updatedHabit = updateHabit(id, name);
+  const updatedHabit = await updateHabit(id, name);
 
   if (!updatedHabit) {
     return jsonResponse(404, { message: "Habit not found" });

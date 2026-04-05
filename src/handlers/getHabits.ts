@@ -5,5 +5,6 @@ import { jsonResponse } from "../utils/response";
 export const handler = async (
   _event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> => {
-  return jsonResponse(200, getHabits());
+  const habits = await getHabits();
+  return jsonResponse(200, habits);
 };
